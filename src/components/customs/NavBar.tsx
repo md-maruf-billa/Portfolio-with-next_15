@@ -8,7 +8,6 @@ import { RxCross1 } from "react-icons/rx";
 import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
-import { Button } from "../ui/button";
 import { useTheme } from "next-themes";
 
 const NavBar = () => {
@@ -60,8 +59,8 @@ const NavBar = () => {
                                                       <DropdownMenuTrigger asChild>
                                                             <IoIosSunny className="text-4xl"/>
                                                       </DropdownMenuTrigger>
-                                                      <DropdownMenuContent className="w-56">
-                                                            <DropdownMenuGroup>
+                                                      <DropdownMenuContent className="w-10">
+                                                            <DropdownMenuGroup className="py-4">
                                                                   <DropdownMenuItem onClick={() => setTheme("light")}><IoIosSunny  /><span>Light</span></DropdownMenuItem>
                                                                   <DropdownMenuItem onClick={() => setTheme("dark")} ><FaMoon  /><span>Dark</span></DropdownMenuItem>
 
