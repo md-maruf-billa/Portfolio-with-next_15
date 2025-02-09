@@ -58,7 +58,7 @@ const NavBar = () => {
                                                 <div>
                                                       <DropdownMenu>
                                                             <DropdownMenuTrigger asChild>
-                                                                  <IoIosSunny className="text-4xl" />
+                                                                  <IoIosSunny className="text-4xl cursor-pointer" />
                                                             </DropdownMenuTrigger>
                                                             <DropdownMenuContent className="w-10">
                                                                   <DropdownMenuGroup className="py-4">

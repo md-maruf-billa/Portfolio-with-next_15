@@ -11,6 +11,7 @@ import { FaCss3 } from "react-icons/fa6";
 import { RiTailwindCssFill } from "react-icons/ri";
 import { RiBootstrapLine } from "react-icons/ri";
 import React from "react";
+import Title from './Title';
 
 const skillSet = [
       {
@@ -81,9 +82,8 @@ const skillSet = [
 export default function Skills() {
       return (
             <div className=' py-20'>
-                  <h2 className='text-4xl md:text-5xl font-bold text-center'>My <span className='text-customSelect'>Skills</span></h2>
-
-                  <div className="grid grid-cols-6 gap-8 mt-10">
+                  <Title slogun="know my best" titlePrev="Best" titleNext="Skills" />
+                  <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-8 mt-10">
                         {
                               skillSet.map(skill =>
                               (
@@ -91,8 +91,8 @@ export default function Skills() {
                                           key={skill.id}
                                           className="flex flex-col gap-2 justify-center items-center border-4 py-8"
                                     >
-                                          <span className="text-6xl">{React.createElement(skill.icon)}</span>
-                                          <h1 className="text-2xl">{skill.title}</h1>
+                                          <span className="text-3xl md:text-5xl lg:text-6xl">{React.createElement(skill.icon)}</span>
+                                          <h1 className="text-sm md:text-lg lg:text-2xl">{skill.title}</h1>
                                     </div>
                               )
                               )

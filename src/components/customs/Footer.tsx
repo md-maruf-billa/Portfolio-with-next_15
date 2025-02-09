@@ -1,5 +1,7 @@
 import React from 'react';
 import { BiUpArrowCircle } from "react-icons/bi";
+import logo from "@/assets/icons/logo.png";
+import Image from 'next/image';
 
 export default function Footer() {
       return (
@@ -8,6 +10,7 @@ export default function Footer() {
 
                         <footer className="flex flex-col justify-center items-center  p-10">
                               <aside className='flex flex-col justify-center items-center gap-2'>
+                                    <div className='border-2 w-[100px] h-[100px] flex justify-center items-center border-customSelect rounded-full'><Image src={logo} width={200} height={100} alt='Abumahid Islam' /></div>
                                     <h2 className='text-5xl font-bold text-center'>Abu-<span className='text-customSelect'>Mahid</span></h2>
 
                                     <p className="font-bold">
