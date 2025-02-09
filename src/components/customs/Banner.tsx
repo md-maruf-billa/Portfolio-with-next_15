@@ -11,14 +11,14 @@ import profileImage from '@/assets/images/profiledp.png'
 export default function Banner() {
 
       return (
-            <div id='home' className='container mx-auto flex flex-col md:flex-row gap-5 justify-center px-4 items-center py-20 '>
+            <div id='home' className='flex flex-col md:flex-row gap-5 justify-center px-4 items-center py-20 '>
 
                   {/* Banner content */}
                   <div>
 
                         <div className='space-y-4'>
                               <h3 className='text-2xl md:text-4xl font-semibold'>Hi, I'm</h3>
-                              <h2 className="text-4xl  lg:text-6xl font-bold">Md Abu-Mahid Islam</h2>
+                              <h2 className="text-4xl  lg:text-6xl font-bold">Md Abu-<span className='text-customSelect'>Mahid Islam</span></h2>
                               <h3 className='text-2xl  lg:text-4xl font-semibold'>And I'm a <TypeAnimation
                                     className='text-customSelect'
                                     sequence={['Frontend Developer', 500, 'Web Designer', 500, 'MERN Stack Developer', 500]}
