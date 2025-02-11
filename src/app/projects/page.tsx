@@ -1,3 +1,4 @@
+import Title from '@/components/customs/Title';
 import { TProject } from '@/Types/index.t';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -13,6 +14,8 @@ const ProjectPage = async () => {
       const data = await res.json();
       return (
             <div className='mt-24 container mx-auto'>
+                  <Title slogun='see my work' titlePrev='Recent' titleNext='Projects' />
+                  <hr className="my-8 border-gray-200 dark:border-gray-700" />
                   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10'>
                         {
                               data?.data?.map((project: TProject) =>
