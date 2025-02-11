@@ -5,13 +5,13 @@ import { FaTwitter } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { FaDownload } from "react-icons/fa";
-import profileImage from '@/assets/images/profiledp.png'
 import { motion } from "motion/react"
+import photo from "@/assets/images/myphoto.png"
 
 export default function Banner() {
 
       return (
-            <div id="home" className="flex flex-col md:flex-row gap-5 justify-center px-4 items-center py-20">
+            <div id="home" className="flex flex-col md:flex-row gap-5 justify-between px-4 items-center py-20">
                   {/* Banner content (Comes from the left) */}
                   <motion.div
                         initial={{ opacity: 0, x: -100 }}
@@ -21,7 +21,7 @@ export default function Banner() {
                               ease: "easeInOut"
                         }}
                         viewport={{ once: true, amount: 0.1 }}
-                        className="space-y-4"
+                        className="space-y-4 md:w-1/2"
                   >
                         <h3 className="text-2xl md:text-4xl font-semibold">Hi, I'm</h3>
                         <h2 className="text-4xl lg:text-6xl font-bold">
@@ -31,7 +31,7 @@ export default function Banner() {
                               And I'm a{" "}
                               <TypeAnimation
                                     className="text-customSelect"
-                                    sequence={["Frontend Developer", 500, "Web Designer", 500, "MERN Stack Developer", 500]}
+                                    sequence={["Front-end Developer", 500, "Back-end Developer", 500, "Web Designer", 500, "Full-stack Developer", 500]}
                                     repeat={Infinity}
                               />
                         </h3>
@@ -58,7 +58,7 @@ export default function Banner() {
                   </motion.div>
 
                   {/* Banner Image (Comes from the right) */}
-                  <motion.div
+                  <motion.div className="md:w-1/2"
                         initial={{ opacity: 0, x: 100 }}
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{
@@ -66,8 +66,9 @@ export default function Banner() {
                               ease: "easeInOut"
                         }}
                         viewport={{ once: true, amount: 0.1 }}
+
                   >
-                        <motion.img
+                        <motion.div
                               animate={{
                                     y: [0, -30, 0]
                               }}
@@ -76,9 +77,14 @@ export default function Banner() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                               }}
-                              src="https://abumahid-portfolio.netlify.app/assets/profiledp-8-CD7nSm.png"
-                              alt="Profile"
-                        />
+                              className=' flex justify-end'
+                        >
+                              <img
+                                    className='w-[80%]'
+                                    src={photo.src}
+                                    alt="Abumahid Islam"
+                              />
+                        </motion.div>
                   </motion.div>
             </div>
 

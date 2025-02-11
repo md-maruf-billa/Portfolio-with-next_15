@@ -1,8 +1,7 @@
 import { TBlog } from "@/Types/index.t";
 import Image from "next/image";
 
-
-const BlogDetailsPage = async ({ params }: { params: Record<string, string> }) => {
+const BlogDetailsPage = async ({ params }: { params: Promise<{ blogId: string }> }) => {
       const { blogId } = await params
       // fetch data
       const res = await fetch(`${process.env.SERVER_URL}/blogs/${blogId}`)

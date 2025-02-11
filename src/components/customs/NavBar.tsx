@@ -7,11 +7,13 @@ import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { motion } from 'motion/react';
+import { usePathname } from "next/navigation";
 
 const NavBar = () => {
+      const path = usePathname();
       const [isOpen, setIsOpen] = useState(false);
       const { setTheme } = useTheme()
 
@@ -58,9 +60,13 @@ const NavBar = () => {
                                                 }`}
                                     >
                                           <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
-                                                <Link href="/projects" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Project's</Link>
-                                                <Link href="/blogs" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Blogs's</Link>
-                                                <Link href="/contact" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Contact Me</Link>
+                                                <Link href="/projects" className={path == "/projects" ? "border-2 border-customSelect px-4 py-2 rounded-lg text-customSelect font-semibold" : "px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"}>Project's</Link>
+
+
+                                                <Link href="/blogs" className={path == "/blogs" ? "border-2 border-customSelect px-4 py-2 rounded-lg text-customSelect font-semibold" : "px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"}>Blogs's</Link>
+
+
+                                                <Link href="/contact" className={path == "/contact" ? "border-2 border-customSelect px-4 py-2 rounded-lg text-customSelect font-semibold" : "px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"}>Contact Me</Link>
                                           </div>
 
                                           <div className="flex flex-col lg:flex-row lg:items-center mt-4 lg:mt-0 gap-8">
