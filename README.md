@@ -11,18 +11,18 @@ This is a personal portfolio and blog website built with **Next.js**. It showcas
 
 ## Pages
 
-- **Home Page** (`/`):
+- **Home Page**
   - Displays portfolio introduction (name, bio, and profile picture).
   - Showcases skills using icons or skill bars.
   - Highlights featured projects (static or fetched from an API).
   - Includes a resume download button.
-- **Projects Page** (`/projects`):
+- **Projects Page**
 
   - Lists projects with images, descriptions, and links.
 
-- **Blog Page** (`/blog`):
+- **Blog Page**
   - Displays a list of blog posts
-- **Contact Page** (`/contact`):
+- **Contact Page**
   - A simple contact form (name, email, message).
 
 ### Admin or Owner
@@ -67,14 +67,10 @@ npm install
 3. Set up env
 
 ```js
-ENV_TYPE = development
-PORT = 5000
-DB_URI = your db url
-JWT_SECRET = abumahid
-CLOUD_NAME= your cloudinary name
-CLOUD_API_KEY=cloud api
-CLOUD_SECRET= cloud secret
+SERVER_URL= your server url
 ```
+
+`Note:-` If you need server hare it is- https://github.com/md-maruf-billa/Portfolio-Server
 
 4. Start project on development
 
