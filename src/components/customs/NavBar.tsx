@@ -9,15 +9,24 @@ import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
+import { motion } from 'motion/react';
 
 const NavBar = () => {
       const [isOpen, setIsOpen] = useState(false);
       const { setTheme } = useTheme()
 
       return (
-            <div className="fixed top-0 w-full">
+            <div
+                  className="fixed top-0 w-full z-30">
                   <nav className="relative bg-white shadow dark:bg-gray-800  top-0 ">
-                        <div className="container px-6 py-4 mx-auto">
+                        <motion.div
+                              initial={{ opacity: 0, x: 400 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{
+                                    duration: 2,
+                                    ease: "easeInOut"
+                              }}
+                              className="container px-6 py-4 mx-auto">
                               <div className="lg:flex lg:items-center lg:justify-between">
                                     <div className="flex items-center justify-between">
                                           <div className="flex items-center gap-2">
@@ -80,7 +89,7 @@ const NavBar = () => {
                                           </div>
                                     </div>
                               </div>
-                        </div>
+                        </motion.div>
                   </nav>
             </div>
       );

@@ -1,11 +1,20 @@
-import React from 'react';
+"use client"
 import { BiUpArrowCircle } from "react-icons/bi";
 import logo from "@/assets/icons/logo.png";
 import Image from 'next/image';
+import { motion } from 'motion/react';
 
 export default function Footer() {
       return (
-            <footer className='relative bg-gray-100 shadow dark:bg-gray-800'>
+            <motion.footer
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{
+                        duration: 2,
+                        ease: "easeInOut"
+                  }}
+                  viewport={{ once: true, amount: 0.1 }}
+                  className='relative bg-gray-100 shadow dark:bg-gray-800'>
                   <div className=' container mx-auto'>
 
                         <footer className="flex flex-col justify-center items-center  p-10">
@@ -41,6 +50,6 @@ export default function Footer() {
                   <a className='absolute p-3 bg-[#262b40] bottom-0 right-0 rounded-full' href="#home">
                         <BiUpArrowCircle className='text-3xl' />
                   </a>
-            </footer>
+            </motion.footer>
       )
 }

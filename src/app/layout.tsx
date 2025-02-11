@@ -48,7 +48,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavBar />
-          <div className="min-h-[70vh]">
+          <div className="min-h-[70vh] px-4">
             {children}
           </div>
           <Footer />

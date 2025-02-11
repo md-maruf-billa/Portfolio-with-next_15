@@ -1,23 +1,43 @@
-import React from 'react';
+"use client"
 import photo from "@/assets/images/featuredProject.png"
 import Image from 'next/image';
 import Title from './Title';
 import { IoCheckmarkDoneSharp } from "react-icons/io5";
 import { FaGithub } from "react-icons/fa";
 import { BsBrowserEdge } from "react-icons/bs";
+import { motion } from 'motion/react';
 const FeaturedProject = () => {
       return (
             <div className=' py-20'>
                   <Title slogun='My advanture' titlePrev='Featured' titleNext='Project' />
                   <div className="flex lg:gap-10 flex-col overflow-hidden rounded-md lg:flex-row mt-10">
-                        <Image
-                              src={photo}
-                              alt="Featured Project Image"
-                              width={0}
-                              height={0}
-                              className='object-fill rounded-md w-full lg:w-1/2'
-                        />
-                        <div className="flex flex-col justify-center flex-1 p-6 ">
+                        <motion.div
+                              className="w-full lg:w-1/2"
+                              initial={{ opacity: 0, x: -100 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{
+                                    duration: 2,
+                                    ease: "easeInOut"
+                              }}
+                              viewport={{ once: true, amount: 0.1 }}
+                        >
+                              <Image
+                                    src={photo}
+                                    alt="Featured Project Image"
+                                    width={0}
+                                    height={0}
+                                    className='object-fill rounded-md w-full'
+                              />
+                        </motion.div>
+                        <motion.div
+                              initial={{ opacity: 0, x: 100 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              transition={{
+                                    duration: 2,
+                                    ease: "easeInOut"
+                              }}
+                              viewport={{ once: true, amount: 0.1 }}
+                              className="flex flex-col justify-center flex-1 p-6 ">
                               <span className="text-xs uppercase text-customSelect">Project Name</span>
                               <h3 className="text-4xl font-bold italic">Mahid Book's</h3>
                               <p className="my-6 dark:text-gray-400">To create a vibrant digital space where every reader can discover their next favorite book. Our mission is to bring the joy of reading to everyone through an intuitive, seamless, and personalized experience—empowering authors, delighting book lovers, and fostering a community united by the love of storytelling.</p>
@@ -40,7 +60,7 @@ const FeaturedProject = () => {
 
                                     </div>
                               </div>
-                        </div>
+                        </motion.div>
                   </div>
             </div>
       );
