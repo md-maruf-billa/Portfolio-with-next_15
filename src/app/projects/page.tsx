@@ -11,7 +11,6 @@ const ProjectPage = async () => {
             cache: "force-cache"
       });
       const data = await res.json();
-      console.log(data)
       return (
             <div className='mt-24 container mx-auto'>
                   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10'>
@@ -56,10 +55,10 @@ const ProjectPage = async () => {
 
                                                 <div className='mt-6 flex items-center justify-between'>
                                                       <div className='flex items-center gap-5 *:text-customSelect *:border-2 *:rounded-full *:border-customSelect *:p-2 *:text-xs '>
-                                                            <a href='https://github.com/md-maruf-billa/Book-shop-frontend-router_6' target='_blank' className='hover:text-black hover:bg-customSelect flex items-center gap-2'> <FaGithub />Front-end</a>
-                                                            <a href='https://github.com/md-maruf-billa/Book-shop-frontend-router_6' target='_blank' className='hover:text-black hover:bg-customSelect flex items-center gap-2'> <FaGithub />Back-end</a>
+                                                            <a href={project?.frontEndGitRepo} target='_blank' className='hover:text-black hover:bg-customSelect flex items-center gap-2'> <FaGithub />Front-end</a>
+                                                            <a href={project?.backEndGitRepo} target='_blank' className='hover:text-black hover:bg-customSelect flex items-center gap-2'> <FaGithub />Back-end</a>
                                                       </div>
-                                                      <Link className='text-customSelect border-2 rounded-full border-customSelect p-2 text-xs hover:text-black hover:bg-customSelect flex items-center gap-2 w-fit' href={`project/${project._id}`}><TbListDetails /> Details</Link>
+                                                      <Link className='text-customSelect border-2 rounded-full border-customSelect p-2 text-xs hover:text-black hover:bg-customSelect flex items-center gap-2 w-fit' href={`projects/${project._id}`}><TbListDetails /> Details</Link>
                                                 </div>
                                           </div>
                                     </div>

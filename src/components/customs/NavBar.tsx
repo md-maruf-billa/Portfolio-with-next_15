@@ -50,8 +50,8 @@ const NavBar = () => {
                                     >
                                           <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
                                                 <Link href="/projects" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Project's</Link>
-                                                <Link href="/projects" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Blogs's</Link>
-                                                <Link href="/projects" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Contact Me</Link>
+                                                <Link href="/blogs" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Blogs's</Link>
+                                                <Link href="/contact" className="px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md">Contact Me</Link>
                                           </div>
 
                                           <div className="flex flex-col lg:flex-row lg:items-center mt-4 lg:mt-0 gap-8">
