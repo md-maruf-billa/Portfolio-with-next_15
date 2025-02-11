@@ -51,7 +51,7 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			},
 			customPrimary:"#101026",
-			customSelect:"#4999d7"
+			customSelect:"#4999d7",
   		},
   		borderRadius: {
   			lg: 'var(--radius)',
