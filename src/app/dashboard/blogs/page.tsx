@@ -28,7 +28,12 @@ const BlogManagementPage = () => {
       const [shouldRefetch, setShouldRefetch] = useState(true);
       useEffect(() => {
             const fetchData = async () => setData(await getAllBlogs())
-            fetchData();
+            if (shouldRefetch) {
+                  fetchData();
+                  setShouldRefetch(false);
+            } else {
+                  fetchData();
+            }
       }, [shouldRefetch])
 
       return (

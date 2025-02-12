@@ -25,11 +25,12 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useForm, Controller, SubmitHandler, FieldValues } from "react-hook-form";
-import Select, { MultiValue } from "react-select";
+import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { TProject } from "@/Types/index.t";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { deleteProject, getAllProjects, updateProject } from "@/utils/serverActions";
 
 type OptionType = {
       value: string;
@@ -60,13 +61,8 @@ const ProjectManagementPage = () => {
       const [data, setData] = useState<TProject[]>()
       const [shouldRefetch, setShouldRefetch] = useState(false);
       useEffect(() => {
-            const fetchData = async () => {
-                  // const res = await fetch(`https://portfolio-eng-maruf-billas-projects.vercel.app/api/project/all-project`);
-                  const res = await fetch(`http://localhost:5000/api/project/all-project`);
-                  const data = await res.json();
-                  setData(data?.data);
-            };
 
+            const fetchData = async () => setData(await getAllProjects())
             // Refetch if shouldRefetch is true
             if (shouldRefetch) {
                   fetchData();
@@ -78,10 +74,7 @@ const ProjectManagementPage = () => {
 
       const handleDelete = async (id: string) => {
             const toasId = toast.loading("Deleting.......")
-            const update = await fetch(`http://localhost:5000/api/project/${id}`, {
-                  method: "DELETE",
-            })
-            const res = await update.json()
+            const res = await deleteProject(id)
             if (res?.sucess) {
                   toast.success("Delete Success ", { id: toasId })
                   setShouldRefetch(true)
@@ -168,16 +161,7 @@ const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShoul
                   ...data,
                   technologies: arr
             }
-
-
-            const update = await fetch(`http://localhost:5000/api/project/${project._id}`, {
-                  method: "PATCH",
-                  headers: {
-                        "Content-Type": "application/json",
-                  },
-                  body: JSON.stringify(updatePayload),
-            })
-            const res = await update.json()
+            const res = await updateProject(project._id, updatePayload)
             if (res?.sucess) {
                   toast.success("Updated Success ", { id: toasId })
                   setShouldRefetch(true)

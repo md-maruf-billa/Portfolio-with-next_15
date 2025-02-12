@@ -27,6 +27,18 @@ export const updateBlogs = async (payload: any, id: string) => {
   return response.json()
 }
 
+export const updateProject = async (id: string, payload: any) => {
+  const update = await fetch(`http://localhost:5000/api/project/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(payload)
+  })
+  const res = update.json()
+  return res
+}
+
 // get
 export const getAllBlogs = async () => {
   const res = await fetch(`${process.env.SERVER_URL}/blogs`, {
@@ -35,4 +47,18 @@ export const getAllBlogs = async () => {
   const data = await res.json()
   console.log('inServer', data)
   return data?.data
+}
+
+export const getAllProjects = async () => {
+  const res = await fetch(`${process.env.SERVER_URL}/project/all-project`)
+  const data = await res.json()
+  return data.data
+}
+
+export const deleteProject = async (id: string) => {
+  const update = await fetch(`${process.env.SERVER_URL}/project/${id}`, {
+    method: 'DELETE'
+  })
+  const res = update.json()
+  return res
 }
