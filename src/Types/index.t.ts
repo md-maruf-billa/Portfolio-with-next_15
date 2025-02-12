@@ -21,4 +21,6 @@ export type TBlog = {
   isPublished?: boolean
   isDeleted?: boolean
   createdAt: string
+updatedAt: string
+
 }

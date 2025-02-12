@@ -109,28 +109,34 @@ const NavBar = ({ session }: { session: TNavProps | null }) => {
                                                                               <div className="overflow-hidden border-2 h-[50px] w-[50px] rounded-full flex justify-center items-center border-[#101026]">
                                                                                     <Image src={session?.user?.image!} alt="text" width={50} height={50} />
                                                                               </div>
-                                                                              <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
+                                                                              <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">{session?.user?.name}</h3>
                                                                         </button>
                                                                   </DropdownMenuTrigger>
                                                                   <DropdownMenuContent className="w-56">
                                                                         <DropdownMenuLabel>Manage Account</DropdownMenuLabel>
                                                                         <DropdownMenuSeparator />
                                                                         <DropdownMenuGroup>
-                                                                              <DropdownMenuItem>
-                                                                                    <SiBloglovin />
-                                                                                    <span>Blog Management</span>
-                                                                                    <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
-                                                                              </DropdownMenuItem>
+                                                                              <Link href={"/dashboard/blogs"}>
+                                                                                    <DropdownMenuItem>
+                                                                                          <SiBloglovin />
+                                                                                          <span>Blog Management</span>
+                                                                                          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                                    </DropdownMenuItem>
+                                                                              </Link>
+                                                                              <Link href={"/dashboard/projects"}>
                                                                               <DropdownMenuItem>
                                                                                     <GrProjects />
                                                                                     <span>Project Management</span>
                                                                                     <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
                                                                               </DropdownMenuItem>
+                                                                              </Link>
+                                                                              <Link href={"/dashboard/messages"}>
                                                                               <DropdownMenuItem>
                                                                                     <FaFacebookMessenger />
                                                                                     <span>Message Management</span>
                                                                                     <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                                                                               </DropdownMenuItem>
+                                                                              </Link>
                                                                               {/* <DropdownMenuItem>
                                                                                     <Settings />
                                                                                     <span>Color Customization</span>

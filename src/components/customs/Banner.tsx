@@ -77,7 +77,7 @@ export default function Banner() {
                                     repeat: Infinity,
                                     ease: "easeInOut"
                               }}
-                              className=' flex justify-end'
+                              className=' flex justify-center md:justify-end'
                         >
                               <img
                                     className='w-[80%]'

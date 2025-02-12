@@ -46,7 +46,7 @@ const BlogPage = async () => {
                                                                         Abu-Mahid
                                                                   </a>
 
-                                                                  <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(blog?.createdAt).toLocaleDateString("en-US", {
+                                                                  <p className="text-sm text-gray-500 dark:text-gray-400">{new Date(blog?.updatedAt).toLocaleDateString("en-US", {
                                                                         year: "numeric",
                                                                         month: "long",
                                                                         day: "numeric"
