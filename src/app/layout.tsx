@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "@/components/customs/NavBar";
 import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/customs/Footer";
+import { getServerSession } from "next-auth";
+import { authOptions } from "./utils/outhOptions";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,13 +33,14 @@ export const metadata: Metadata = {
 };
 
 
-export default function RootLayout({
+const RootLayout = async ({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {
+}>) => {
+  const session = await getServerSession(authOptions)
   return (
-    <html lang="en" suppressHydrationWarning={false}>
+    <html lang="en" >
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-customPrimary`}
       >
@@ -47,7 +50,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <NavBar />
+          <NavBar session={session} />
           <div className="min-h-[70vh] px-4">
             {children}
           </div>
@@ -57,3 +60,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+export default RootLayout

@@ -7,12 +7,25 @@ import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { motion } from 'motion/react';
 import { usePathname } from "next/navigation";
+import { CiLogin } from "react-icons/ci";
+import { CreditCard, Keyboard, LogOut, Settings, User, Users } from "lucide-react";
+import { SiBloglovin } from "react-icons/si";
+import { GrProjects } from "react-icons/gr";
+import { FaFacebookMessenger } from "react-icons/fa";
 
-const NavBar = () => {
+type TNavProps = {
+      user?: {
+            name?: string | null,
+            email?: string | null,
+            image?: string | null,
+      }
+}
+
+const NavBar = ({ session }: { session: TNavProps | null }) => {
       const path = usePathname();
       const [isOpen, setIsOpen] = useState(false);
       const { setTheme } = useTheme()
@@ -86,12 +99,57 @@ const NavBar = () => {
 
                                                 </div>
 
-                                                <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                                                      <div className="overflow-hidden border-2 h-[50px] w-[50px] rounded-full flex justify-center items-center border-[#101026]">
-                                                            <Image src={"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=334&q=80"} alt="text" width={50} height={50} />
-                                                      </div>
-                                                      <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
-                                                </button>
+                                                {
+                                                      session?.user?.email ?
+
+                                                            <DropdownMenu>
+                                                                  <DropdownMenuTrigger asChild>
+                                                                        <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
+                                                                              <div className="overflow-hidden border-2 h-[50px] w-[50px] rounded-full flex justify-center items-center border-[#101026]">
+                                                                                    <Image src={session?.user?.image!} alt="text" width={50} height={50} />
+                                                                              </div>
+                                                                              <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">Khatab wedaa</h3>
+                                                                        </button>
+                                                                  </DropdownMenuTrigger>
+                                                                  <DropdownMenuContent className="w-56">
+                                                                        <DropdownMenuLabel>Manage Account</DropdownMenuLabel>
+                                                                        <DropdownMenuSeparator />
+                                                                        <DropdownMenuGroup>
+                                                                              <DropdownMenuItem>
+                                                                                    <SiBloglovin />
+                                                                                    <span>Blog Management</span>
+                                                                                    <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                              </DropdownMenuItem>
+                                                                              <DropdownMenuItem>
+                                                                                    <GrProjects />
+                                                                                    <span>Project Management</span>
+                                                                                    <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                                                                              </DropdownMenuItem>
+                                                                              <DropdownMenuItem>
+                                                                                    <FaFacebookMessenger />
+                                                                                    <span>Message Management</span>
+                                                                                    <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                                                                              </DropdownMenuItem>
+                                                                              {/* <DropdownMenuItem>
+                                                                                    <Settings />
+                                                                                    <span>Color Customization</span>
+                                                                                    <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                                                                              </DropdownMenuItem> */}
+                                                                        </DropdownMenuGroup>
+                                                                        <DropdownMenuSeparator />
+                                                                        <DropdownMenuItem>
+                                                                              <LogOut />
+                                                                              <span>Log out</span>
+                                                                              <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+                                                                        </DropdownMenuItem>
+                                                                  </DropdownMenuContent>
+                                                            </DropdownMenu>
+                                                            :
+                                                            <Link href={"/login"} className="flex w-fit px-4 py-2 items-center gap-2 rounded-lg bg-[#4592d2] hover:bg-[#1c67a4] text-[#054278] text-xl">
+                                                                  <CiLogin />
+                                                                  Login
+                                                            </Link>
+                                                }
                                           </div>
                                     </div>
                               </div>

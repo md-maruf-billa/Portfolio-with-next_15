@@ -2,8 +2,7 @@ import Banner from "@/components/customs/Banner";
 import FeaturedProject from "@/components/customs/FeaturedProject";
 import Skills from "@/components/customs/Skills";
 
-
-export default function Home() {
+const Home = () => {
   return (
     <div className="container mx-auto">
       <Banner />
@@ -13,3 +12,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home
