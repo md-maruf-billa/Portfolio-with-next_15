@@ -16,6 +16,7 @@ import { CreditCard, Keyboard, LogOut, Settings, User, Users } from "lucide-reac
 import { SiBloglovin } from "react-icons/si";
 import { GrProjects } from "react-icons/gr";
 import { FaFacebookMessenger } from "react-icons/fa";
+import { signOut } from "next-auth/react";
 
 type TNavProps = {
       user?: {
@@ -137,7 +138,7 @@ const NavBar = ({ session }: { session: TNavProps | null }) => {
                                                                               </DropdownMenuItem> */}
                                                                         </DropdownMenuGroup>
                                                                         <DropdownMenuSeparator />
-                                                                        <DropdownMenuItem>
+                                                                        <DropdownMenuItem onClick={() => signOut()}>
                                                                               <LogOut />
                                                                               <span>Log out</span>
                                                                               <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
