@@ -9,7 +9,7 @@ import { TbListDetails } from "react-icons/tb";
 
 const ProjectPage = async () => {
       const res = await fetch(`${process.env.SERVER_URL}/project/all-project`, {
-            cache: "force-cache"
+            cache: "no-store"
       });
       const data = await res.json();
       return (

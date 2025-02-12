@@ -61,7 +61,8 @@ const ProjectManagementPage = () => {
       const [shouldRefetch, setShouldRefetch] = useState(false);
       useEffect(() => {
             const fetchData = async () => {
-                  const res = await fetch(`https://portfolio-eng-maruf-billas-projects.vercel.app/api/project/all-project`);
+                  // const res = await fetch(`https://portfolio-eng-maruf-billas-projects.vercel.app/api/project/all-project`);
+                  const res = await fetch(`http://localhost:5000/api/project/all-project`);
                   const data = await res.json();
                   setData(data?.data);
             };
@@ -73,7 +74,22 @@ const ProjectManagementPage = () => {
             } else {
                   fetchData();
             }
-      }, [shouldRefetch]); 
+      }, [shouldRefetch]);
+
+      const handleDelete = async (id: string) => {
+            const toasId = toast.loading("Deleting.......")
+            const update = await fetch(`http://localhost:5000/api/project/${id}`, {
+                  method: "DELETE",
+            })
+            const res = await update.json()
+            if (res?.sucess) {
+                  toast.success("Delete Success ", { id: toasId })
+                  setShouldRefetch(true)
+            } else {
+                  toast.success("Delete faild ", { id: toasId })
+
+            }
+      }
       return (
             <div className="mt-24 container mx-auto">
                   <Title slogun="Update anything" titlePrev="Project's" titleNext="Dashboard" />
@@ -106,12 +122,12 @@ const ProjectManagementPage = () => {
                                                       </span>
                                                 ))}
                                           </TableCell>
-                                          <TableCell className="text-right space-x-2">
+                                          <TableCell className="text-right space-x-2 space-y-2">
                                                 <Link href={`/projects/${project?._id}`}>
                                                       <Button className="bg-customSelect">View</Button>
                                                 </Link>
                                                 <EditProjectDialog project={project} setShouldRefetch={setShouldRefetch} />
-                                                <Button variant="destructive">Delete</Button>
+                                                <Button onClick={() => handleDelete(project._id)} variant="destructive">Delete</Button>
                                           </TableCell>
                                     </TableRow>
                               ))}
@@ -178,7 +194,7 @@ const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShoul
                         <Button className="bg-green-600">Update</Button>
                   </DialogTrigger>
                   <DialogContent className="sm:max-w-[425px]">
-                        <DialogHeader>
+                        <DialogHeader >
                               <DialogTitle>Edit Project</DialogTitle>
                               <DialogDescription>Make changes to your project here. Click save when you're done.</DialogDescription>
                         </DialogHeader>
@@ -270,7 +286,7 @@ const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShoul
 
                               </div>
                               <DialogFooter>
-                                    <Button type="submit">Save changes</Button>
+                                    <Button type="submit" className="bg-customSelect">Save changes</Button>
                               </DialogFooter>
                         </form>
                   </DialogContent>

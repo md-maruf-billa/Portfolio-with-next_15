@@ -7,16 +7,18 @@ import { FaBars } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 import { IoIosSunny } from "react-icons/io";
 import { FaMoon } from "react-icons/fa";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuTrigger } from "../ui/dropdown-menu";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuGroup, DropdownMenuItem, DropdownMenuLabel, DropdownMenuPortal, DropdownMenuSeparator, DropdownMenuShortcut, DropdownMenuSub, DropdownMenuSubContent, DropdownMenuSubTrigger, DropdownMenuTrigger } from "../ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import { motion } from 'motion/react';
 import { usePathname } from "next/navigation";
 import { CiLogin } from "react-icons/ci";
-import { CreditCard, Keyboard, LogOut, Settings, User, Users } from "lucide-react";
+import { LogOut } from "lucide-react";
 import { SiBloglovin } from "react-icons/si";
 import { GrProjects } from "react-icons/gr";
 import { FaFacebookMessenger } from "react-icons/fa";
 import { signOut } from "next-auth/react";
+import { FaRegEdit } from "react-icons/fa";
+import { MdOutlineCreateNewFolder } from "react-icons/md";
 
 type TNavProps = {
       user?: {
@@ -116,32 +118,62 @@ const NavBar = ({ session }: { session: TNavProps | null }) => {
                                                                         <DropdownMenuLabel>Manage Account</DropdownMenuLabel>
                                                                         <DropdownMenuSeparator />
                                                                         <DropdownMenuGroup>
-                                                                              <Link href={"/dashboard/blogs"}>
-                                                                                    <DropdownMenuItem>
+                                                                              <DropdownMenuSub>
+                                                                                    <DropdownMenuSubTrigger>
                                                                                           <SiBloglovin />
                                                                                           <span>Blog Management</span>
-                                                                                          <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                                    </DropdownMenuSubTrigger>
+                                                                                    <DropdownMenuPortal>
+                                                                                          <DropdownMenuSubContent>
+                                                                                                <Link href={"/dashboard/create-blogs"}>
+                                                                                                      <DropdownMenuItem>
+                                                                                                            <MdOutlineCreateNewFolder />
+                                                                                                            <span>Create Blog</span>
+                                                                                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                                                      </DropdownMenuItem>
+                                                                                                </Link>
+                                                                                                <Link href={"/dashboard/blogs"}>
+                                                                                                      <DropdownMenuItem>
+                                                                                                            <FaRegEdit />
+                                                                                                            <span>Update Blog</span>
+                                                                                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                                                      </DropdownMenuItem>
+                                                                                                </Link>
+                                                                                          </DropdownMenuSubContent>
+                                                                                    </DropdownMenuPortal>
+                                                                              </DropdownMenuSub>
+                                                                              <DropdownMenuSub>
+                                                                                    <DropdownMenuSubTrigger>
+                                                                                          <GrProjects />
+                                                                                          <span>Project Management</span>
+                                                                                    </DropdownMenuSubTrigger>
+                                                                                    <DropdownMenuPortal>
+                                                                                          <DropdownMenuSubContent>
+                                                                                                <Link href={"/dashboard/create-projects"}>
+                                                                                                      <DropdownMenuItem>
+                                                                                                            <MdOutlineCreateNewFolder />
+                                                                                                            <span>Create Project</span>
+                                                                                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                                                      </DropdownMenuItem>
+                                                                                                </Link>
+                                                                                                <Link href={"/dashboard/projects"}>
+                                                                                                      <DropdownMenuItem>
+                                                                                                            <FaRegEdit />
+                                                                                                            <span>Update Project</span>
+                                                                                                            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                                                                                                      </DropdownMenuItem>
+                                                                                                </Link>
+                                                                                          </DropdownMenuSubContent>
+                                                                                    </DropdownMenuPortal>
+                                                                              </DropdownMenuSub>
+                                                                              <Link href={"/dashboard/messages"}>
+                                                                                    <DropdownMenuItem>
+                                                                                          <FaFacebookMessenger />
+                                                                                          <span>Message Management</span>
+                                                                                          <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
                                                                                     </DropdownMenuItem>
                                                                               </Link>
-                                                                              <Link href={"/dashboard/projects"}>
-                                                                              <DropdownMenuItem>
-                                                                                    <GrProjects />
-                                                                                    <span>Project Management</span>
-                                                                                    <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
-                                                                              </DropdownMenuItem>
-                                                                              </Link>
-                                                                              <Link href={"/dashboard/messages"}>
-                                                                              <DropdownMenuItem>
-                                                                                    <FaFacebookMessenger />
-                                                                                    <span>Message Management</span>
-                                                                                    <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
-                                                                              </DropdownMenuItem>
-                                                                              </Link>
-                                                                              {/* <DropdownMenuItem>
-                                                                                    <Settings />
-                                                                                    <span>Color Customization</span>
-                                                                                    <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
-                                                                              </DropdownMenuItem> */}
+
                                                                         </DropdownMenuGroup>
                                                                         <DropdownMenuSeparator />
                                                                         <DropdownMenuItem onClick={() => signOut()}>
