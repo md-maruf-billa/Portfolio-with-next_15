@@ -6,6 +6,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Footer from "@/components/customs/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../utils/outhOptions";
+import { Toaster } from 'sonner'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -55,6 +56,7 @@ const RootLayout = async ({
             {children}
           </div>
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
