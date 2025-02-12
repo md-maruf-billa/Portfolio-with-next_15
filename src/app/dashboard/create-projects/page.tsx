@@ -2,25 +2,18 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { TProject } from '@/Types/index.t';
+import { Tag, TProject } from '@/Types/index.t';
 import { createProject } from '@/utils/serverActions';
 import { useState } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
 import { toast } from 'sonner';
-export interface Tag {
-      id: string;
-      className: string;
-      [key: string]: string;
-}
 
 
 const CreateBlogPage = () => {
       const { register, handleSubmit, formState: { errors } } = useForm<TProject>();
       const [technology, setTechnology] = useState<Array<Tag>>([]);
       const [features, setFeatures] = useState<Array<Tag>>([]);
-      let featuresArr: string[] = []
-      let technologyArr: string[] = []
 
       const handleDelete = (index: number) => {
             setTechnology(technology.filter((_, i) => i !== index));

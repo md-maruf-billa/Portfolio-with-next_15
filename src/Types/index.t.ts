@@ -24,3 +24,9 @@ export type TBlog = {
 updatedAt: string
 
 }
+export interface Tag {
+  id: string
+  className: string
+  [key: string]: string
+}
+
