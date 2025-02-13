@@ -1,18 +1,20 @@
 "use client"
+import TextEditor from '@/components/customs/TextEditor';
 import Title from '@/components/customs/Title';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Tag, TBlog } from '@/Types/index.t';
 import { createBlog } from '@/utils/serverActions';
-import { useState } from 'react';
+import { use, useState } from 'react';
 import { useForm, SubmitHandler, FieldValues } from 'react-hook-form';
 import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
 import { toast } from 'sonner';
 
 const CreateBlogPage = () => {
-      const { register, handleSubmit, formState: { errors } } = useForm<TBlog>();
+      const { register, handleSubmit, formState: { errors }, reset } = useForm<TBlog>();
       const [blogTag, setBlogTags] = useState<Array<Tag>>([]);
+      const [blogContent, setBlogContent] = useState<string>();
 
 
       const handleDelete = (index: number) => {
@@ -34,11 +36,14 @@ const CreateBlogPage = () => {
             formData.append("data", JSON.stringify({
                   ...data,
                   blogTags: blogArr,
+                  content: blogContent,
                   blogImage: ""
             }));
+
             const res = await createBlog(formData as any);
             if (res?.sucess) {
                   toast.success("Created Successfully", { id: toasId });
+                  reset()
             } else {
                   toast.error("Creation Failed", { id: toasId });
             }
@@ -78,19 +83,13 @@ const CreateBlogPage = () => {
                               </div>
 
                         </div>
-                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
-                              <div className='w-full md:w-1/2'>
+                        <div className='flex flex-col  gap-5'>
+                              <div className='w-full'>
                                     <label htmlFor="content" className="block text-sm font-medium">Description</label>
-                                    <Textarea
-                                          rows={6}
-                                          id="description"
-                                          {...register('content', { required: 'Description is required' })}
-                                          className="block bg-transparent w-full px-4 py-2 mt-2 border border-gray-400 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                    />
-                                    {errors.content && <p className="text-red-600 text-xs">{errors.content.message}</p>}
+                                    <TextEditor setTextData={setBlogContent} />
                               </div>
 
-                              <div className='w-full md:w-1/2'>
+                              <div className='w-full md:w-[30%]'>
                                     <div>
                                           <label htmlFor="projectImage" className="block text-sm font-medium">Blog Cover</label>
                                           <label htmlFor="projectImage" className="flex flex-col items-center w-full max-w-lg p-5 mx-auto mt-2 text-center  border-2 border-gray-300 border-dashed cursor-pointer dark:border-gray-700 rounded-xl">

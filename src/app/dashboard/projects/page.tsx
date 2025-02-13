@@ -31,6 +31,7 @@ import { TProject } from "@/Types/index.t";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
 import { deleteProject, getAllProjects, updateProject } from "@/utils/serverActions";
+import TextEditor from "@/components/customs/TextEditor";
 
 type OptionType = {
       value: string;
@@ -92,7 +93,7 @@ const ProjectManagementPage = () => {
                               <TableRow>
                                     <TableHead className="w-[100px]">Image</TableHead>
                                     <TableHead>Project Name</TableHead>
-                                    <TableHead>Project Slogun</TableHead>
+                                    <TableHead>Technologies</TableHead>
                                     <TableHead>Post Tags</TableHead>
                                     <TableHead className="text-right">Actions</TableHead>
                               </TableRow>
@@ -108,7 +109,7 @@ const ProjectManagementPage = () => {
                                           </TableCell>
                                           <TableCell>{project?.projectName}</TableCell>
                                           <TableCell>{project?.slogun}</TableCell>
-                                          <TableCell>
+                                          <TableCell className="w-[100px]">
                                                 {project?.technologies?.map((tech) => (
                                                       <span className="mr-2" key={tech}>
                                                             {tech}
@@ -139,6 +140,7 @@ interface EditProjectDialogProps {
 }
 
 const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShouldRefetch }) => {
+      const [descriptionText, setDescriptionText] = useState<string>();
       const { handleSubmit, control } = useForm({
             defaultValues: {
                   projectName: project.projectName || "",
@@ -159,7 +161,8 @@ const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShoul
             data?.technologies?.forEach((tc: OptionType) => arr.push(tc.value))
             const updatePayload = {
                   ...data,
-                  technologies: arr
+                  technologies: arr,
+                  description: descriptionText
             }
             const res = await updateProject(project._id, updatePayload)
             if (res?.sucess) {
@@ -173,46 +176,44 @@ const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShoul
       };
 
       return (
-            <Dialog>
+            <Dialog >
                   <DialogTrigger asChild>
                         <Button className="bg-green-600">Update</Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
+                  <DialogContent >
                         <DialogHeader >
                               <DialogTitle>Edit Project</DialogTitle>
-                              <DialogDescription>Make changes to your project here. Click save when you're done.</DialogDescription>
                         </DialogHeader>
                         <form onSubmit={handleSubmit(onSubmit)} className="grid gap-4 py-4">
-                              <div className="">
-                                    <Label htmlFor="projectName" className="text-right">
-                                          Project Name
-                                    </Label>
-                                    <Controller
-                                          name="projectName"
-                                          control={control}
-                                          render={({ field }) => <Input id="projectName" {...field} className="col-span-3" />}
-                                    />
+                              <div className="flex flex-col md:flex-row gap-2 items-center justify-between">
+                                    <div className="w-full md:w-1/2">
+                                          <Label htmlFor="projectName" className="text-right">
+                                                Project Name
+                                          </Label>
+                                          <Controller
+                                                name="projectName"
+                                                control={control}
+                                                render={({ field }) => <Input id="projectName" {...field} className="col-span-3" />}
+                                          />
+                                    </div>
+                                    <div className="w-full md:w-1/2">
+                                          <Label htmlFor="slogun" className="text-right">
+                                                Slogun
+                                          </Label>
+                                          <Controller
+                                                name="slogun"
+                                                control={control}
+                                                render={({ field }) => <Input id="slogun" {...field} className="col-span-3" />}
+                                          />
+                                    </div>
                               </div>
                               <div className="">
                                     <Label htmlFor="description" className="text-right">
                                           Description
                                     </Label>
-                                    <Controller
-                                          name="description"
-                                          control={control}
-                                          render={({ field }) => <Textarea id="description" {...field} className="col-span-3" />}
-                                    />
+                                    <TextEditor setTextData={setDescriptionText} defaultValue={project.description} />
                               </div>
-                              <div className="">
-                                    <Label htmlFor="slogun" className="text-right">
-                                          Slogun
-                                    </Label>
-                                    <Controller
-                                          name="slogun"
-                                          control={control}
-                                          render={({ field }) => <Input id="slogun" {...field} className="col-span-3" />}
-                                    />
-                              </div>
+
                               <div className="">
                                     <Label htmlFor="liveLink" className="text-right">
                                           Project Live Link
@@ -223,25 +224,27 @@ const EditProjectDialog: React.FC<EditProjectDialogProps> = ({ project, setShoul
                                           render={({ field }) => <Input id="liveLink" {...field} className="col-span-3" />}
                                     />
                               </div>
-                              <div className="">
-                                    <Label htmlFor="frontEndGitRepo" className="text-right">
-                                          Front-end Repo
-                                    </Label>
-                                    <Controller
-                                          name="frontEndGitRepo"
-                                          control={control}
-                                          render={({ field }) => <Input id="frontEndGitRepo" {...field} className="col-span-3" />}
-                                    />
-                              </div>
-                              <div className="">
-                                    <Label htmlFor="backEndGitRepo" className="text-right">
-                                          Back-end Repo
-                                    </Label>
-                                    <Controller
-                                          name="backEndGitRepo"
-                                          control={control}
-                                          render={({ field }) => <Input id="backEndGitRepo" {...field} className="col-span-3" />}
-                                    />
+                              <div className="flex  flex-col md:flex-row gap-3">
+                                    <div className="w-full md:w-1/2">
+                                          <Label htmlFor="frontEndGitRepo" className="text-right">
+                                                Front-end Repo
+                                          </Label>
+                                          <Controller
+                                                name="frontEndGitRepo"
+                                                control={control}
+                                                render={({ field }) => <Input id="frontEndGitRepo" {...field} className="col-span-3" />}
+                                          />
+                                    </div>
+                                    <div className="w-full md:w-1/2">
+                                          <Label htmlFor="backEndGitRepo" className="text-right">
+                                                Back-end Repo
+                                          </Label>
+                                          <Controller
+                                                name="backEndGitRepo"
+                                                control={control}
+                                                render={({ field }) => <Input id="backEndGitRepo" {...field} className="col-span-3" />}
+                                          />
+                                    </div>
                               </div>
                               <div className="">
                                     <Label htmlFor="technologies">Technologies</Label>

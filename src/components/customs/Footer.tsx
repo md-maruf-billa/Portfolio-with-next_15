@@ -8,6 +8,7 @@ import { FaFacebook } from "react-icons/fa";
 import { AiFillTikTok } from "react-icons/ai";
 
 export default function Footer() {
+
       return (
             <motion.footer
                   initial={{ opacity: 0, y: 100 }}

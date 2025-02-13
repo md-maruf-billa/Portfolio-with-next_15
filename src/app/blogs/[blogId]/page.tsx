@@ -9,18 +9,16 @@ const BlogDetailsPage = async ({ params }: { params: Promise<{ blogId: string }>
       const blog: TBlog = data?.data
       return (
 
-            <div className="mt-28 container mx-auto">
-                  <div className="flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+            <div className="mt-24 container mx-auto">
+                  <div className="flex flex-col px-6 py-10 mx-auto space-y-6  lg:py-16 lg:flex-row lg:items-start">
                         <div className="w-full lg:w-1/2">
-                              <div className="lg:max-w-lg">
+                              <div className="">
                                     <h1 className="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">
                                           {blog?.title}
                                     </h1>
                                     <div className="mt-6">
                                           <span className="text-xs font-medium text-customSelect uppercase">blog contents</span>
-                                          <p>
-                                                {blog?.content}
-                                          </p>
+                                          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
                                     </div>
 
                                     <div className="mt-6">

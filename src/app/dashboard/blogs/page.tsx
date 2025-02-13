@@ -22,6 +22,7 @@ import { deleteBlog, getAllBlogs, updateBlogs } from '@/utils/serverActions';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
+import TextEditor from '@/components/customs/TextEditor';
 
 const BlogManagementPage = () => {
       const [data, setData] = useState<TBlog[]>()
@@ -58,7 +59,7 @@ const BlogManagementPage = () => {
                                     <TableHead>Blog Title</TableHead>
                                     <TableHead>Posted Date</TableHead>
                                     <TableHead>Updated Date</TableHead>
-                                    <TableHead>Post Tags</TableHead>
+                                    <TableHead className='w-[100px]'>Post Tags</TableHead>
                                     <TableHead className="text-right">Actions</TableHead>
                               </TableRow>
                         </TableHeader>
@@ -83,12 +84,12 @@ const BlogManagementPage = () => {
                                                       month: "long",
                                                       day: "numeric"
                                                 })}</TableCell>
-                                                <TableCell>
+                                                <TableCell className='w-[100px]'>
                                                       {
                                                             blog?.blogTags?.map(tag => <span key={tag} className="mr-2">#{tag}</span>)
                                                       }
                                                 </TableCell>
-                                                <TableCell className="text-right space-x-2">
+                                                <TableCell className="text-right space-x-2 space-y-2 md:w-[400px]">
                                                       <Link href={`/blogs/${blog?._id}`}><Button className='bg-customSelect'>View</Button></Link>
                                                       <Modal blog={blog} setShouldRefetch={setShouldRefetch} />
                                                       <Button variant="destructive" onClick={() => handleBlogDelete(blog?._id)}>Deleted</Button>
@@ -108,6 +109,8 @@ export default BlogManagementPage;
 
 
 const Modal = ({ blog, setShouldRefetch }: { blog: TBlog; setShouldRefetch: any }) => {
+      const [content, setContent] = useState<string>();
+      const [defaultVal, setSetDefaultVal] = useState<string>();
       const [postTag, setPostTag] = useState<Array<Tag>>(
             blog.blogTags?.map(tag => ({ id: tag, text: tag, className: "default-tag-class" })) || []
       );
@@ -120,7 +123,7 @@ const Modal = ({ blog, setShouldRefetch }: { blog: TBlog; setShouldRefetch: any 
 
       useEffect(() => {
             setValue("title", blog.title);
-            setValue("content", blog.content);
+            setSetDefaultVal(blog.content)
       }, [blog, setValue]);
 
       const handleAdditionPostTag = (tag: Tag) => setPostTag(prevTags => [...prevTags, tag]);
@@ -130,10 +133,9 @@ const Modal = ({ blog, setShouldRefetch }: { blog: TBlog; setShouldRefetch: any 
             const toastId = toast.loading("Updating...");
             const blogTags = postTag.map(tag => tag.text);
 
-            const payload = { ...data, blogTags };
+            const payload = { ...data, blogTags, content: content };
 
             const res = await updateBlogs(payload, blog._id);
-            console.log(res)
             if (res?.sucess) {
                   toast.success("Update successful!", { id: toastId });
                   setShouldRefetch(true);
@@ -148,7 +150,7 @@ const Modal = ({ blog, setShouldRefetch }: { blog: TBlog; setShouldRefetch: any 
                   <DialogTrigger asChild>
                         <Button className="bg-green-600">Update</Button>
                   </DialogTrigger>
-                  <DialogContent className="sm:max-w-[425px]">
+                  <DialogContent className=" ">
                         <DialogHeader>
                               <DialogTitle>Edit Your Published Blog</DialogTitle>
                               <DialogDescription>Make changes to your blog and save when you're done.</DialogDescription>
@@ -161,7 +163,7 @@ const Modal = ({ blog, setShouldRefetch }: { blog: TBlog; setShouldRefetch: any 
                                     </div>
                                     <div>
                                           <Label htmlFor="content" className="text-right pb-3">Blog Description</Label>
-                                          <Textarea {...register("content")} id="content" />
+                                          <TextEditor setTextData={setContent} defaultValue={defaultVal} />
                                     </div>
                                     <div>
                                           <Label htmlFor="tags" className="text-right pb-3">Blog Hash Tags</Label>

@@ -12,8 +12,8 @@ const ProjectDetailsPage = async ({ params }: { params: Promise<{ projectId: str
       const projectData: TProject = data?.data;
 
       return (
-            <div className="mt-28 container mx-auto">
-                  <div className="flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
+            <div className="mt-24 container mx-auto">
+                  <div className="flex flex-col px-6 py-10 mx-auto space-y-6  lg:py-16 lg:flex-row lg:items-start">
                         <div className="w-full lg:w-1/2">
                               <div className="lg:max-w-lg">
                                     <h1 className="text-3xl font-semibold tracking-wide text-gray-800 dark:text-white lg:text-4xl">
@@ -23,9 +23,8 @@ const ProjectDetailsPage = async ({ params }: { params: Promise<{ projectId: str
 
                                     <div className="mt-6">
                                           <span className="text-xs font-medium text-customSelect uppercase">project details</span>
-                                          <p>
-                                                {projectData?.description}
-                                          </p>
+                                          <div className="text-justify" dangerouslySetInnerHTML={{ __html: projectData?.description }} />
+
                                     </div>
 
                                     <div className="mt-8 space-y-5">
@@ -53,7 +52,7 @@ const ProjectDetailsPage = async ({ params }: { params: Promise<{ projectId: str
                                                 ))}
                                           </div>
                                     </div>
-                                    <div className="mt-6">
+                                    <div className="mt-6 ">
                                           <span className="text-xs font-medium text-customSelect uppercase">links</span>
                                           <div className="mt-2 flex items-center gap-5 *:text-customSelect *:border-2 *:rounded-full *:border-customSelect *:p-2 *:text-xs ">
                                                 <a href={projectData?.liveLink} target="_blank" className="hover:text-black hover:bg-customSelect flex items-center gap-2 text-customSelect border-2 rounded-full border-customSelect p-2 text-xs">

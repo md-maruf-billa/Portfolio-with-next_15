@@ -1,8 +1,8 @@
 "use client"
+import TextEditor from '@/components/customs/TextEditor';
 import Title from '@/components/customs/Title';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
 import { Tag, TProject } from '@/Types/index.t';
 import { createProject } from '@/utils/serverActions';
 import { useState } from 'react';
@@ -12,9 +12,10 @@ import { toast } from 'sonner';
 
 
 const CreateBlogPage = () => {
-      const { register, handleSubmit, formState: { errors } } = useForm<TProject>();
+      const { register, handleSubmit, formState: { errors }, reset } = useForm<TProject>();
       const [technology, setTechnology] = useState<Array<Tag>>([]);
       const [features, setFeatures] = useState<Array<Tag>>([]);
+      const [textData, setTextData] = useState<string>();
 
       const handleDelete = (index: number) => {
             setTechnology(technology.filter((_, i) => i !== index));
@@ -50,14 +51,15 @@ const CreateBlogPage = () => {
             formData.append("image", data?.projectImage[0]);
             formData.append("data", JSON.stringify({
                   ...data,
+                  description: textData,
                   features: featuresArr,
                   technologies: technologyArr,
                   projectImage: ""
             }));
 
             const res = await createProject(formData as any);
-            console.log("respnse", res)
             if (res?.sucess) {
+                  reset()
                   toast.success("Created Successfully", { id: toasId });
             } else {
                   toast.error("Creation Failed", { id: toasId });
@@ -170,16 +172,10 @@ const CreateBlogPage = () => {
 
                               </div>
                         </div>
-                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
-                              <div className='w-full md:w-1/2'>
+                        <div className='flex flex-col  gap-5'>
+                              <div className='w-full'>
                                     <label htmlFor="description" className="block text-sm font-medium">Description</label>
-                                    <Textarea
-                                          rows={6}
-                                          id="description"
-                                          {...register('description', { required: 'Description is required' })}
-                                          className="block bg-transparent w-full px-4 py-2 mt-2 border border-gray-400 rounded-md   focus:border-blue-400 focus:ring-blue-300 focus:ring-opacity-40 dark:focus:border-blue-300 focus:outline-none focus:ring"
-                                    />
-                                    {errors.description && <p className="text-red-600 text-xs">{errors.description.message}</p>}
+                                    <TextEditor setTextData={setTextData} />
                               </div>
 
                               <div className='w-full md:w-1/2'>

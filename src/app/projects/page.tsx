@@ -30,7 +30,7 @@ const ProjectPage = async () => {
                                                 className="object-cover w-full h-64"
                                           />
 
-                                          <div className="p-6">
+                                          <div className="p-6 ">
                                                 <div>
                                                       <span className="text-xs font-medium text-customSelect uppercase">project name</span>
                                                       <div className='flex items-center gap-3 '>
@@ -56,7 +56,7 @@ const ProjectPage = async () => {
                                                       </div>
                                                 </div>
 
-                                                <div className='mt-6 flex items-center justify-between'>
+                                                <div className='mt-6 flex items-end  justify-between'>
                                                       <div className='flex items-center gap-5 *:text-customSelect *:border-2 *:rounded-full *:border-customSelect *:p-2 *:text-xs '>
                                                             <a href={project?.frontEndGitRepo} target='_blank' className='hover:text-black hover:bg-customSelect flex items-center gap-2'> <FaGithub />Front-end</a>
                                                             <a href={project?.backEndGitRepo} target='_blank' className='hover:text-black hover:bg-customSelect flex items-center gap-2'> <FaGithub />Back-end</a>

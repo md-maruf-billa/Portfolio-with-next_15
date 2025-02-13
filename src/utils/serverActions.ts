@@ -35,8 +35,6 @@ export const sendMassage = async (payload: any) => {
 
 
 export const updateBlogs = async (payload: any, id: string) => {
-  console.log('payload', payload)
-  console.log('id', id)
   const response = await fetch(`${process.env.SERVER_URL}/blogs/${id}`, {
     headers: {
       'Content-Type': 'application/json'
@@ -48,7 +46,7 @@ export const updateBlogs = async (payload: any, id: string) => {
 }
 
 export const updateProject = async (id: string, payload: any) => {
-  const update = await fetch(`http://localhost:5000/api/project/${id}`, {
+  const update = await fetch(`${process.env.SERVER_URL}/project/${id}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
@@ -64,8 +62,8 @@ export const getAllBlogs = async () => {
   const res = await fetch(`${process.env.SERVER_URL}/blogs`, {
     cache: 'no-store'
   })
-  const data = await res.json()
-  console.log('inServer', data)
+const data = await res.json()
+
   return data?.data
 }
 

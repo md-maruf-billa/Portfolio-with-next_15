@@ -22,7 +22,6 @@ const MessagePage = async () => {
             cache: "no-store"
       })
       const data = await res.json();
-      console.log(data)
       return (
             <div className="container mx-auto mt-24">
                   <Title slogun='messages' titlePrev='Read' titleNext='Message' />
