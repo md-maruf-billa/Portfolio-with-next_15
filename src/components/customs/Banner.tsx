@@ -45,7 +45,7 @@ export default function Banner() {
                               <a href="https://x.com/Abumahidislam" target="_blank" className="hover:text-black hover:bg-customSelect">
                                     <FaTwitter />
                               </a>
-                              <a href="#" className="hover:text-black hover:bg-customSelect">
+                              <a href="https://www.instagram.com/dev.abumahid?igsh=MWhheDdnbnl2MG53" className="hover:text-black hover:bg-customSelect">
                                     <FaInstagram />
                               </a>
                               <a href="https://www.linkedin.com/in/md-abu-mahid-islam/" target="_blank" className="hover:text-black hover:bg-customSelect">

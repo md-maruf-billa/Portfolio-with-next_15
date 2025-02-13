@@ -20,17 +20,36 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Md Abumahid Islam",
-  description: "Hi, I'm Md Abumahid Islam, a passionate Front-End Developer specializing in React, Tailwind CSS, and modern web technologies. Explore my projects, skills, and contact me for collaboration.",
-  keywords: ["Md Abumahid Islam", "Front-End Developer", "React Developer", "Web Developer", "Tailwind CSS", "JavaScript", "Node.js", "Portfolio", "Full-Stack Projects"],
+  description:
+    "Hi, I'm Md Abumahid Islam, a passionate Front-End Developer specializing in React, Tailwind CSS, and modern web technologies. Explore my projects, skills, and contact me for collaboration.",
+  keywords: [
+    "Md Abumahid Islam",
+    "Abumahid",
+    "abumahid",
+    "Abu-Mahid",
+    "abu-mahid",
+    "abu-mahid islam",
+    "abumahid islam",
+    "Front-End Developer",
+    "React Developer",
+    "Web Developer",
+    "Tailwind CSS",
+    "JavaScript",
+    "Node.js",
+    "Portfolio",
+    "Full-Stack Projects",
+  ],
   authors: [{ name: "Md Abumahid Islam" }],
-  viewport: "width=device-width, initial-scale=1.0",
   openGraph: {
     title: "Md Abumahid Islam - Front-End Developer Portfolio",
-    description: "Explore the portfolio of Md Abumahid Islam, a skilled Front-End Developer focused on creating modern, responsive, and user-friendly web applications.",
+    description:
+      "Explore the portfolio of Md Abumahid Islam, a skilled Front-End Developer focused on creating modern, responsive, and user-friendly web applications.",
     url: "https://abumahid.vercel.app/",
     type: "website",
-    images: ["https://abumahid.vercel.app/_next/static/media/myphoto.54b0a8a1.png"],
-  }
+    images: [
+      "https://abumahid.vercel.app/_next/static/media/myphoto.54b0a8a1.png",
+    ],
+  },
 };
 
 
@@ -65,3 +84,4 @@ const RootLayout = async ({
 
 
 export default RootLayout
+

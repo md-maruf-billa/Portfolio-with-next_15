@@ -68,7 +68,7 @@ const CreateBlogPage = () => {
             <div className="container mx-auto mt-28 flex justify-center items-center flex-col">
                   <Title slogun='build future' titlePrev='Create' titleNext='Project' />
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full max-w-4xl my-8 border border-customSelect p-5 rounded-xl">
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="projectName" className="block text-sm font-medium">Project Name</label>
                                     <Input
@@ -88,7 +88,7 @@ const CreateBlogPage = () => {
                                     {errors.slogun && <p className="text-red-600 text-xs">{errors.slogun.message}</p>}
                               </div>
                         </div>
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="frontEndGitRepo" className="block text-sm font-medium">Frontend Git Repository</label>
                                     <Input
@@ -110,7 +110,7 @@ const CreateBlogPage = () => {
                               </div>
 
                         </div>
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="liveLink" className="block text-sm font-medium">Live Link</label>
                                     <Input
@@ -130,7 +130,7 @@ const CreateBlogPage = () => {
                                     />
                               </div>
                         </div>
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="technologies" className="block text-sm font-medium">Technologies</label>
                                     <ReactTags
@@ -170,7 +170,7 @@ const CreateBlogPage = () => {
 
                               </div>
                         </div>
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="description" className="block text-sm font-medium">Description</label>
                                     <Textarea

@@ -30,3 +30,20 @@ export interface Tag {
   [key: string]: string
 }
 
+export type TUser = {
+  user?: {
+    name?: string | null
+    email?: string | null
+    image?: string | null
+  }
+}
+
+export type TMessage = {
+  _id: string
+  messageTitle: string
+  messageBody: string
+  user: { email: string; name: string; photo: string }
+  updatedAt: string
+  createdAt: string
+}
+

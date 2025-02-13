@@ -37,7 +37,6 @@ const CreateBlogPage = () => {
                   blogImage: ""
             }));
             const res = await createBlog(formData as any);
-            console.log("respnse", res)
             if (res?.sucess) {
                   toast.success("Created Successfully", { id: toasId });
             } else {
@@ -48,7 +47,7 @@ const CreateBlogPage = () => {
             <div className="container mx-auto mt-28 flex justify-center items-center flex-col">
                   <Title slogun='expression' titlePrev='Create' titleNext='Blog' />
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 w-full max-w-4xl my-8 border p-5 rounded-xl border-customSelect">
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="title" className="block text-sm font-medium">Blog Title</label>
                                     <Input
@@ -79,7 +78,7 @@ const CreateBlogPage = () => {
                               </div>
 
                         </div>
-                        <div className='flex justify-between items-center gap-5'>
+                        <div className='flex flex-col md:flex-row justify-between items-center gap-5'>
                               <div className='w-full md:w-1/2'>
                                     <label htmlFor="content" className="block text-sm font-medium">Description</label>
                                     <Textarea

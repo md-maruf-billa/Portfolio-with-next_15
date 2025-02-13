@@ -19,16 +19,10 @@ import { FaFacebookMessenger } from "react-icons/fa";
 import { signOut } from "next-auth/react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdOutlineCreateNewFolder } from "react-icons/md";
+import { TUser } from "@/Types/index.t";
 
-type TNavProps = {
-      user?: {
-            name?: string | null,
-            email?: string | null,
-            image?: string | null,
-      }
-}
 
-const NavBar = ({ session }: { session: TNavProps | null }) => {
+const NavBar = ({ session }: { session: TUser | null }) => {
       const path = usePathname();
       const [isOpen, setIsOpen] = useState(false);
       const { setTheme } = useTheme()
@@ -48,10 +42,8 @@ const NavBar = ({ session }: { session: TNavProps | null }) => {
                               <div className="lg:flex lg:items-center lg:justify-between">
                                     <div className="flex items-center justify-between">
                                           <div className="flex items-center gap-2">
-                                                <Link href="/" className="h-[50px] w-[50px] rounded-full flex justify-center items-center bg-[#101026]">
-                                                      <Image className="" src={logo} alt="Logo for Abumahid Islam" width={50} height={50} />
-                                                </Link>
-                                                <h1 className="text-3xl font-semibold">Abu-Mahid</h1>
+                                                <Link href={"/"} className='border-2 w-[40px] h-[40px] flex justify-center items-center border-customSelect rounded-full'><Image src={logo} width={200} height={100} alt='Abumahid Islam' /></Link>
+                                                <Link href={"/"} className="text-3xl font-bold">Abu<span className="text-customSelect">-Mahid</span></Link>
                                           </div>
 
                                           <div className="flex lg:hidden">
@@ -109,7 +101,7 @@ const NavBar = ({ session }: { session: TNavProps | null }) => {
                                                             <DropdownMenu>
                                                                   <DropdownMenuTrigger asChild>
                                                                         <button type="button" className="flex items-center focus:outline-none" aria-label="toggle profile dropdown">
-                                                                              <div className="overflow-hidden border-2 h-[50px] w-[50px] rounded-full flex justify-center items-center border-[#101026]">
+                                                                              <div className="overflow-hidden border-2 h-[40px] w-[40px] rounded-full flex justify-center items-center border-customSelect">
                                                                                     <Image src={session?.user?.image!} alt="text" width={50} height={50} />
                                                                               </div>
                                                                               <h3 className="mx-2 text-gray-700 dark:text-gray-200 lg:hidden">{session?.user?.name}</h3>

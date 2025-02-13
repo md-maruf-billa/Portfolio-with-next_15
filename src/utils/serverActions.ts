@@ -1,5 +1,8 @@
 'use server'
 
+import { getServerSession } from 'next-auth'
+import { authOptions } from './outhOptions'
+
 // post
 export const createProject = async (payload: any) => {
   const response = await fetch(
@@ -18,6 +21,17 @@ export const createBlog = async (payload: any) => {
   })
   return response.json()
 }
+export const sendMassage = async (payload: any) => {
+  const response = await fetch(`${process.env.SERVER_URL}/message`, {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(payload)
+  })
+  return response.json()
+}
+
 
 
 export const updateBlogs = async (payload: any, id: string) => {
@@ -75,4 +89,9 @@ export const deleteBlog = async (id: string) => {
   })
   const res = update.json()
   return res
+}
+
+export const getUser = async () => {
+  const session = await getServerSession(authOptions)
+  return session
 }
