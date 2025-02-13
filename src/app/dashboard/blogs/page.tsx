@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { WithContext as ReactTags, SEPARATORS } from 'react-tag-input';
-import { getAllBlogs, updateBlogs } from '@/utils/serverActions';
+import { deleteBlog, getAllBlogs, updateBlogs } from '@/utils/serverActions';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { Textarea } from '@/components/ui/textarea';
 import { toast } from 'sonner';
@@ -35,6 +35,17 @@ const BlogManagementPage = () => {
                   fetchData();
             }
       }, [shouldRefetch])
+
+      const handleBlogDelete = async (id: string) => {
+            const toastId = toast.loading("Deleting blog............")
+            const res = await deleteBlog(id)
+            if (res?.sucess) {
+                  toast.success("Deleted successful!", { id: toastId });
+                  setShouldRefetch(true);
+            } else {
+                  toast.error("Delete failed.", { id: toastId });
+            }
+      }
 
       return (
             <div className="mt-24 container mx-auto">
@@ -80,7 +91,7 @@ const BlogManagementPage = () => {
                                                 <TableCell className="text-right space-x-2">
                                                       <Link href={`/blogs/${blog?._id}`}><Button className='bg-customSelect'>View</Button></Link>
                                                       <Modal blog={blog} setShouldRefetch={setShouldRefetch} />
-                                                      <Button variant="destructive">Deleted</Button>
+                                                      <Button variant="destructive" onClick={() => handleBlogDelete(blog?._id)}>Deleted</Button>
                                                 </TableCell>
                                           </TableRow>
                                     )

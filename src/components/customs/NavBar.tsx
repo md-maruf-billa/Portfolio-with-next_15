@@ -76,6 +76,7 @@ const NavBar = ({ session }: { session: TNavProps | null }) => {
                                                 }`}
                                     >
                                           <div className="flex flex-col -mx-6 lg:flex-row lg:items-center lg:mx-8">
+                                                <Link href="/" className={path == "/" ? "border-2 border-customSelect px-4 py-2 rounded-lg text-customSelect font-semibold" : "px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"}>Home</Link>
                                                 <Link href="/projects" className={path == "/projects" ? "border-2 border-customSelect px-4 py-2 rounded-lg text-customSelect font-semibold" : "px-3 py-2 mx-3 mt-2 text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-md"}>Project's</Link>
 
 

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const BlogPage = async () => {
       const res = await fetch(`${process.env.SERVER_URL}/blogs`, {
-            cache: "force-cache"
+            cache: "no-store"
       })
       const data = await res.json()
 

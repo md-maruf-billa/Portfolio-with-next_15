@@ -27,9 +27,9 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Md Abumahid Islam - Front-End Developer Portfolio",
     description: "Explore the portfolio of Md Abumahid Islam, a skilled Front-End Developer focused on creating modern, responsive, and user-friendly web applications.",
-    url: "https://your-portfolio-link.com",
+    url: "https://abumahid.vercel.app/",
     type: "website",
-    images: ["https://your-portfolio-link.com/og-image.jpg"],
+    images: ["https://abumahid.vercel.app/_next/static/media/myphoto.54b0a8a1.png"],
   }
 };
 

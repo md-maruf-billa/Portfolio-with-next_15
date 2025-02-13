@@ -1,7 +1,5 @@
 'use server'
 
-import { TBlog } from '@/Types/index.t'
-
 // post
 export const createProject = async (payload: any) => {
   const response = await fetch(
@@ -13,6 +11,14 @@ export const createProject = async (payload: any) => {
   )
   return response.json()
 }
+export const createBlog = async (payload: any) => {
+  const response = await fetch(`${process.env.SERVER_URL}/blogs`, {
+    method: 'POST',
+    body: payload
+  })
+  return response.json()
+}
+
 
 export const updateBlogs = async (payload: any, id: string) => {
   console.log('payload', payload)
@@ -57,6 +63,14 @@ export const getAllProjects = async () => {
 
 export const deleteProject = async (id: string) => {
   const update = await fetch(`${process.env.SERVER_URL}/project/${id}`, {
+    method: 'DELETE'
+  })
+  const res = update.json()
+  return res
+}
+
+export const deleteBlog = async (id: string) => {
+  const update = await fetch(`${process.env.SERVER_URL}/blogs/${id}`, {
     method: 'DELETE'
   })
   const res = update.json()
